@@ -33,6 +33,7 @@ jobs:
     - name: Log in to Tencent CCR
       uses: docker/login-action@v1
       with:
+        registry: ccr.ccs.tencentyun.com
         username: ${{ secrets.TENCENT_CCR_USERNAME }}
         password: ${{ secrets.TENCENT_CCR_ACCESS_TOKEN }}
 
