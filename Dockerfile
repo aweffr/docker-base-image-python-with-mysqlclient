@@ -2,7 +2,7 @@ FROM python:3.12.4-bookworm as build-mysqlclient
 
 RUN apt update && apt install -y build-essential default-libmysqlclient-dev git
 
-RUN cd / && git clone https://github.com/PyMySQL/mysqlclient.git /mysqlclient && git checkout v2.2.4
+RUN cd / && git clone https://github.com/PyMySQL/mysqlclient.git /mysqlclient && cd /mysqlclient  && git checkout v2.2.4
 
 WORKDIR /mysqlclient
 
