@@ -22,10 +22,24 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-    - name: Build and push Docker images
+    - name: Build and push Docker images to DockerHub
       uses: docker/build-push-action@v2
       with:
         context: .
         push: true
         platforms: linux/amd64,linux/arm64/v8
         tags: aweffr/python-with-mysqlclient:latest
+
+    - name: Log in to Tencent CCR
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.TENCENT_CCR_USERNAME }}
+        password: ${{ secrets.TENCENT_CCR_ACCESS_TOKEN }}
+
+    - name: Build and push Docker images to Tencent CCR
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        platforms: linux/amd64,linux/arm64/v8
+        tags: ccr.ccs.tencentyun.com/aweffr-main/python:python-with-mysqlclient-3.12
